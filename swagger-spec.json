@@ -1,0 +1,69 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/movies/intervals": {
+      "get": {
+        "operationId": "MoviesController_show",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WinnersDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Route that show winners \"Golden Raspberry Awards",
+        "tags": [
+          "Movies"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Golden Raspberry Awards API.",
+    "description": "API that provide by Anderson Franchetto",
+    "version": "0.0.1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "WinnersDto": {
+        "type": "object",
+        "properties": {
+          "producer": {
+            "type": "string",
+            "example": "Producer Name"
+          },
+          "interval": {
+            "type": "number",
+            "example": 10
+          },
+          "previousWin": {
+            "type": "number",
+            "example": 2002
+          },
+          "followingWin": {
+            "type": "number",
+            "example": 2012
+          }
+        },
+        "required": [
+          "producer",
+          "interval",
+          "previousWin",
+          "followingWin"
+        ]
+      }
+    }
+  }
+}
