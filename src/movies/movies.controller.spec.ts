@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MoviesController } from './movies.controller';
-import { MoviesService } from '@/movies/movies.service';
+import { MovieService } from './services/movie.service';
 
 describe('MoviesController', () => {
   let controller: MoviesController;
@@ -10,7 +10,7 @@ describe('MoviesController', () => {
       controllers: [MoviesController],
       providers: [
         {
-          provide: MoviesService,
+          provide: MovieService,
           useValue: {
             getProducerWinnersInterfaces: jest.fn().mockResolvedValue([]),
           },

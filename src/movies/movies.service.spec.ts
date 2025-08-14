@@ -1,16 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MoviesService } from './movies.service';
+import { MovieService } from './services/movie.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Movie } from '@/movies/entities/movie.entity';
 import { Repository } from 'typeorm';
+import { MovieDataProcessor } from './utils/movie-data.processor';
 
 describe('MoviesService', () => {
-  let service: MoviesService;
+  let service: MovieService;
+  let processor: MovieDataProcessor;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        MoviesService,
+        MovieService,
         {
           provide: getRepositoryToken(Movie),
           useValue: {
@@ -19,10 +21,15 @@ describe('MoviesService', () => {
             find: jest.fn(),
           } as Partial<Repository<Movie>>,
         },
+        {
+          provide: MovieDataProcessor,
+          useValue: processor,
+        }
       ],
     }).compile();
 
-    service = module.get<MoviesService>(MoviesService);
+    service = module.get<MovieService>(MovieService);
+    processor = module.get<MovieDataProcessor>(MovieDataProcessor);
   });
 
   it('should be defined', () => {
